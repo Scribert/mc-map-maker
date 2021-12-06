@@ -1,0 +1,2 @@
+import thiswontwork
+print("hi")
