@@ -1,2 +1,0 @@
-import thiswontwork
-print("hi")
