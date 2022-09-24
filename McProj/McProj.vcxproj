@@ -141,10 +141,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\libs\glad\src\glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Plugins.cpp" />
     <ClCompile Include="pythonModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="plugins\editor\test.py" />
+    <ClInclude Include="Plugins.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

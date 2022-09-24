@@ -6,6 +6,8 @@
 #include <pybind11/embed.h>
 namespace py = pybind11;
 
+#include "Plugins.hpp"
+
 int main() {
 
     // Initialize GLFW
@@ -33,15 +35,17 @@ int main() {
         return -1;
     }
 
-	py::scoped_interpreter guard{};
+    py::scoped_interpreter pythonInterpreter;
+    py::module_ os = py::module_::import("os");
     py::module_ sys = py::module_::import("sys");
+
+    std::string path = os.attr("getcwd")().cast<std::string>();
+    sys.attr("path").attr("append")(path + "\\plugins");
+
+    Plugins plugins = Plugins();
+
+    plugins.loadAllPlugins();
 	try {
-        py::module_ os = py::module_::import("os");
-        std::string path = os.attr("getcwd")().cast<std::string>();
-        sys.attr("path").attr("append")(path + "\\x64");
-        py::print(sys.attr("path"));
-		py::module_ test = py::module_::import("test");
-        py::module_ best = py::module_::import("best");
 	}
 	catch (py::error_already_set e) {
 		std::cout << e.what();

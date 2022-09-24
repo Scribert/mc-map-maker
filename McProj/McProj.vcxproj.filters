@@ -27,10 +27,13 @@
     <ClCompile Include="..\..\..\libs\glad\src\glad.c">
       <Filter>3rd Party</Filter>
     </ClCompile>
+    <ClCompile Include="Plugins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="plugins\editor\test.py">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClInclude Include="Plugins.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
