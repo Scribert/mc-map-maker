@@ -144,7 +144,7 @@
     <ClCompile Include="pythonModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test.py" />
+    <None Include="plugins\editor\test.py" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
