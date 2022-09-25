@@ -28,6 +28,7 @@ int main() {
     }
 
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
 
     // Initialize GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -45,13 +46,10 @@ int main() {
     Plugins plugins = Plugins();
 
     plugins.loadAllPlugins();
-	try {
-	}
-	catch (py::error_already_set e) {
-		std::cout << e.what();
-	}
 
     while (!glfwWindowShouldClose(window)) {
+
+        plugins.run("everyFrame");
 
         glClearColor(0.471f, 0.655f, 1.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -63,52 +61,3 @@ int main() {
     glfwTerminate();
     return 0;
 }
-//int main() {
-//    /****************************************************************/
-//    /*                  Initialize GLFW and OpenGL                  */
-//    /****************************************************************/
-//
-//    
-//    glfwMakeContextCurrent(mainWindow);
-//    glfwSetFramebufferSizeCallback(mainWindow, framebufferSizeCallback);
-//    glfwSetCursorPosCallback(mainWindow, mouseCallback);
-//
-//    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-//
-//    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-//        addToLog("Couldn't initialize GLAD");
-//        return -1;
-//    }
-//
-//    // Set some OpenGL settings
-//    glEnable(GL_DEPTH_TEST);
-//
-//    CubeRenderer cr = CubeRenderer("stone", 0, 0, -0.4);
-//    glm::mat4 projectionMatrix = glm::perspective(glm::radians(90.0f), (float)screenWidth / (float)screenHeight, 0.1f, 100.0f);
-//    cr.useTransformationMatrix(projectionMatrix, mainCamera.viewMatrix());
-//
-//    while (!glfwWindowShouldClose(mainWindow)) {
-//
-//        // Timing
-//        float currentFrame = static_cast<float>(glfwGetTime());
-//        deltaTime = currentFrame - prevousFrame;
-//        prevousFrame = currentFrame;
-//
-//        // Input Handling
-//        processInput(mainWindow);
-//
-//        /****************************************************************/
-//        /*                           Rendering                          */
-//        /****************************************************************/
-//        glClearColor(0.471f, 0.655f, 1.0f, 1.0f);
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        cr.shader.activate();
-//        cr.draw();
-//
-//        glfwSwapBuffers(mainWindow);
-//
-//        glfwPollEvents();
-//    }
-//    glfwTerminate();
-//    return 0;
-//}
